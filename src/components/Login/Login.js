@@ -16,11 +16,7 @@ const Login = (props) => {
 
   const loginHandler = () => {
     if (username === "razor" && password === "dummy") {
-      // console.log("In")
-      console.log(props.history)
-      props.history.push('/home');
-      // setValidLogin(true);
-      // setInValidLogin(false);
+      props.history.push(`/home/${username}`);
     } else {
       setValidLogin(false);
       setInValidLogin(true);

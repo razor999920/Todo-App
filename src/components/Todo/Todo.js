@@ -12,7 +12,7 @@ const Todo = () => {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
-            <Route path="/home" component={Home} />
+            <Route path="/home/:name" component={Home} />
             <Route component={Error} />
           </Switch>
         </>
