@@ -17,9 +17,6 @@ const Todo = () => {
           </Switch>
         </>
       </Router>
-
-      {/* <Login />
-      <Home /> */}
     </React.Fragment>
   );
 };
