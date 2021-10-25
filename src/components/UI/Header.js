@@ -35,7 +35,6 @@ const Header = (props) => {
           </ul>
         </nav>
       </header>
-      <hr />
     </React.Fragment>
   );
 };

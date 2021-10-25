@@ -15,29 +15,29 @@ const ListTodos = (props) => {
   return (
     <>
       <h1>List Todos</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>description</th>
-            <th>Target Date</th>
-            <th>Is Completed?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dummy_todos.map((todo) => {
-            return (
-              <tr>
-                <td>{todo.id}</td>
-                <td>{todo.discription}</td>
 
-                <td>{todo.targetDate.toString()}</td>
-                <td>{todo.done.toString()}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>description</th>
+              <th>Target Date</th>
+              <th>Is Completed?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {dummy_todos.map((todo) => {
+              return (
+                <tr>
+                  <td>{todo.discription}</td>
+                  <td>{todo.targetDate.toString()}</td>
+                  <td>{todo.done.toString()}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

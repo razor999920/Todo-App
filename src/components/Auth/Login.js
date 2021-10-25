@@ -25,7 +25,8 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      {inValidLogin && <div>Invalid Login Credentials</div>}
+      <h1 className="container">Login</h1>
+      {inValidLogin && <div className="alert alert-warning">Invalid Login Credentials</div>}
       {validLogin && <div>Login Sucessfull</div>}
       <label>User Name: </label>
       <input
@@ -41,7 +42,7 @@ const Login = (props) => {
         value={password}
         onChange={passwordHandler}
       />
-      <button onClick={loginHandler}>Login</button>
+      <button className='btn btn-success' onClick={loginHandler}>Login</button>
     </React.Fragment>
   );
 };

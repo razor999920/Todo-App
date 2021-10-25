@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../Home/Home";
-import Login from "../Login/Login";
+import Login from "../Auth/Login";
 import Error from "../Error/Error";
 import ListTodos from "./ListTodos";
 import Header from "../UI/Header";
 import Footer from "../UI/Footer";
+import Logout from "../Auth/Logout";
 
 const Todo = () => {
   return (
@@ -16,6 +17,7 @@ const Todo = () => {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/home/:name" component={Home} />
             <Route path="/todos" component={ListTodos} />
             <Route component={Error} />
