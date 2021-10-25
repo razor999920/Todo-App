@@ -4,12 +4,15 @@ import Home from "../Home/Home";
 import Login from "../Login/Login";
 import Error from "../Error/Error";
 import ListTodos from "./ListTodos";
+import Header from "../UI/Header";
+import Footer from "../UI/Footer";
 
 const Todo = () => {
   return (
     <React.Fragment>
       <Router>
         <>
+          <Header />
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
@@ -17,6 +20,7 @@ const Todo = () => {
             <Route path="/todos" component={ListTodos} />
             <Route component={Error} />
           </Switch>
+          <Footer />
         </>
       </Router>
     </React.Fragment>
