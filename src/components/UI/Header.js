@@ -5,7 +5,6 @@ import AuthenticationServices from "../Auth/AuthenticationServices";
 
 const Header = (props) => {
   const isUserLoggedIn = AuthenticationServices.isUserLoggedIn();
-  console.log(isUserLoggedIn);
 
   return (
     <React.Fragment>
