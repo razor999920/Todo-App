@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const ListTodos = (props) => {
   const dummy_todos = [
@@ -28,7 +28,7 @@ const ListTodos = (props) => {
           <tbody>
             {dummy_todos.map((todo) => {
               return (
-                <tr>
+                <tr key={todo.id}>
                   <td>{todo.discription}</td>
                   <td>{todo.targetDate.toString()}</td>
                   <td>{todo.done.toString()}</td>

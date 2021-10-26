@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthenticationService from "./AuthenticationServices";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ const Login = (props) => {
 
   const loginHandler = () => {
     if (username === "razor" && password === "dummy") {
+      AuthenticationService.registerSuccessfulLogin(username, password)
       props.history.push(`/home/${username}`);
     } else {
       setValidLogin(false);
