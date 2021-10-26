@@ -14,20 +14,18 @@ import "./Bootstrap.css";
 function App() {
   return (
     <div className="App">
-      <React.Fragment>
-        <Router>
-          <Header />
-          <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/login" component={Login} />
-            <AuthenticatedRoute path="/logout" component={Logout} />
-            <AuthenticatedRoute path="/home/:name" component={Home} />
-            <AuthenticatedRoute path="/todos" component={ListTodos} />
-            <Route component={Error} />
-          </Switch>
-          <Footer />
-        </Router>
-      </React.Fragment>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Login} />
+          <Route path="/login" component={Login} />
+          <AuthenticatedRoute path="/logout" component={Logout} />
+          <AuthenticatedRoute path="/home/:name" component={Home} />
+          <AuthenticatedRoute path="/todos" component={ListTodos} />
+          <Route component={Error} />
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }
