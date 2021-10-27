@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoDataService from "../../API/Todo/TodoDataService";
 import AuthenticationServices from "../Auth/AuthenticationServices";
 
-const ListTodos = (props) => {
+const ListTodos = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -10,6 +10,9 @@ const ListTodos = (props) => {
     TodoDataService.retrieveAllTodos(username).then((response) => {
       setTodos(response.data);
     });
+    return () => {
+      setTodos('')
+    }
   }, []);
 
   return (
