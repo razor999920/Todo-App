@@ -9,10 +9,14 @@ class AuthenticationServices {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem("authenticatedUser");
-
     if (user) return true;
-    
     return false;
+  }
+
+  getLoggedInUsername() { 
+    let user = sessionStorage.getItem("authenticatedUser");
+    if (user === null) return "";
+    return user;
   }
 }
 

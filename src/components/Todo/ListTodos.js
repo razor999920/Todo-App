@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import TodoDataService from "../../API/Todo/TodoDataService";
+import AuthenticationServices from "../Auth/AuthenticationServices";
 
 const ListTodos = (props) => {
-  const dummy_todos = [
-    { id: 1, discription: "Learn React", done: false, targetDate: new Date() },
-    {
-      id: 2,
-      discription: "Finish the course",
-      done: false,
-      targetDate: new Date(),
-    },
-    { id: 3, discription: "Part 2", done: false, targetDate: new Date() },
-  ];
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    let username = AuthenticationServices.getLoggedInUsername();
+    TodoDataService.retrieveAllTodos(username).then((response) => {
+      setTodos(response.data);
+    });
+  }, []);
 
   return (
     <>
@@ -21,17 +21,17 @@ const ListTodos = (props) => {
           <thead>
             <tr>
               <th>description</th>
-              <th>Target Date</th>
               <th>Is Completed?</th>
+              <th>Target Date</th>
             </tr>
           </thead>
           <tbody>
-            {dummy_todos.map((todo) => {
+            {todos.map((todo) => {
               return (
                 <tr key={todo.id}>
-                  <td>{todo.discription}</td>
-                  <td>{todo.targetDate.toString()}</td>
+                  <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
+                  <td>{todo.targetDate.toString()}</td>
                 </tr>
               );
             })}
