@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import AuthenticationServices from "../Auth/AuthenticationServices";
 
-const Header = (props) => {
+const Header = () => {
   const isUserLoggedIn = AuthenticationServices.isUserLoggedIn();
 
   return (
