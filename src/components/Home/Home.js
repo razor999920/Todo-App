@@ -6,9 +6,28 @@ const Home = (props) => {
   const [serverMessage, setServerMessage] = useState("");
 
   const retrieveWelcomeMessage = () => {
-    HelloWorldService.executeHelloWorldService().then((response) =>
-      setServerMessage(response.data)
-    );
+    // String
+    // HelloWorldService.executeHelloWorldService().then((response) =>
+    //   setServerMessage(response.data)
+    // );
+
+    // JSON
+    // HelloWorldService.executeHelloWorldBeanService().then((response) => {
+    //   setServerMessage(response.data.message); // For JSON data
+    // });
+
+    // Path Variable
+    HelloWorldService.executeHelloWorldPathVariableService(
+      props.match.params.name
+    )
+      .then((response) => {
+        setServerMessage(response.data.message); // For JSON data
+      })
+      .catch((error) => handleError(error));
+  };
+
+  const handleError = (error) => {
+    setServerMessage(error.response.data.message)
   };
 
   return (
