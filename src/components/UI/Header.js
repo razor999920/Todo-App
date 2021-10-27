@@ -10,9 +10,8 @@ const Header = (props) => {
     <React.Fragment>
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-          <div className="navbar-brand">
-            <a>Razor</a>
-          </div>
+          <div className="navbar-brand">Razor</div>{" "}
+          {/* Todo: Change 'Razor' to a <a> tag link */}
           <ul className="navbar-nav">
             {isUserLoggedIn && (
               <li>

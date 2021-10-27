@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import HelloWorldService from "../../API/Todo/HelloWorldService";
 import { Link } from "react-router-dom";
 
 const Home = (props) => {
+  const [serverMessage, setServerMessage] = useState("");
+
   const retrieveWelcomeMessage = () => {
-    console.log("Geting message");
+    HelloWorldService.executeHelloWorldService().then((response) =>
+      setServerMessage(response.data)
+    );
   };
 
   return (
@@ -19,6 +24,8 @@ const Home = (props) => {
           Get Welcome Message
         </button>
       </div>
+
+      <div className="container">{serverMessage}</div>
     </React.Fragment>
   );
 };
