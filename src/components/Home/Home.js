@@ -3,7 +3,7 @@ import HelloWorldService from "../../API/Todo/HelloWorldService";
 import { Link } from "react-router-dom";
 
 const Home = (props) => {
-  const [serverMessage, setServerMessage] = useState("");
+  const [serverMessage, setServerMessage] = useState('');
 
   const retrieveWelcomeMessage = () => {
     // String
@@ -27,7 +27,14 @@ const Home = (props) => {
   };
 
   const handleError = (error) => {
-    setServerMessage(error.response.data.message)
+    let error_message = "";
+    if (error.message) error_message += error.message;
+
+    if (error.response && error.response.data) {
+      error_message += error.response.data.message
+    } 
+
+    setServerMessage(error_message);
   };
 
   return (
