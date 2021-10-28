@@ -7,6 +7,7 @@ import ListTodos from "./components/Todo/ListTodos";
 import Header from "./components/UI/Header";
 import Footer from "./components/UI/Footer";
 import Logout from "./components/Auth/Logout";
+import Todo from "./components/Todo/UpdateTodo";
 import AuthenticatedRoute from "./components/Auth/AuthenticatedRoute";
 import "./App.css";
 import "./Bootstrap.css";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" component={Login} />
           <AuthenticatedRoute path="/logout" component={Logout} />
           <AuthenticatedRoute path="/home/:name" component={Home} />
+          <AuthenticatedRoute path="/todos/:id" component={Todo} />
           <AuthenticatedRoute path="/todos" component={ListTodos} />
           <Route component={Error} />
         </Switch>
