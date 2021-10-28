@@ -4,28 +4,40 @@ import AuthenticationServices from "../Auth/AuthenticationServices";
 
 const ListTodos = () => {
   const [todos, setTodos] = useState([]);
+  const [deleteMessage, setDeleteMessage] = useState(null);
 
   useEffect(() => {
     let username = AuthenticationServices.getLoggedInUsername();
     TodoDataService.retrieveAllTodos(username).then((response) => {
       setTodos(response.data);
     });
-    return () => {
-      setTodos('')
-    }
-  }, []);
+    // WRONG: Beacause it cleans up everytime
+    // return () => {  
+    //   setTodos(null);
+    // };
+  }, [deleteMessage]);
+
+  const deletTodoHandler = (id) => {
+    let username = AuthenticationServices.getLoggedInUsername();
+    TodoDataService.deleteTodo(username, id).then((response) => {
+      setDeleteMessage(`Delete of todo ${id}`);
+    });
+  };
 
   return (
     <>
       <h1>List Todos</h1>
-
+      {deleteMessage && (
+        <div className="alert alert-success">{deleteMessage}</div>
+      )}
       <div className="container">
         <table className="table">
           <thead>
             <tr>
-              <th>description</th>
+              <th>Description</th>
               <th>Is Completed?</th>
               <th>Target Date</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -35,6 +47,14 @@ const ListTodos = () => {
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
                   <td>{todo.targetDate.toString()}</td>
+                  <td>
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => deletTodoHandler(todo.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               );
             })}
