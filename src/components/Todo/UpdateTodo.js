@@ -12,20 +12,40 @@ const Todo = (props) => {
   );
 
   useEffect(() => {
+    if (id === '-1') {
+      return;
+    }
+
     let username = AuthenticationServices.getLoggedInUsername();
     TodoDataService.retrieveTodo(username, id).then((response) => {
       setId(response.data.id);
       setDescription(response.data.description);
-      setTargetDate(moment(response.data.targetDate).format('YYYY-MM-DD'));
+      setTargetDate(moment(response.data.targetDate).format("YYYY-MM-DD"));
     });
-  }, []);
+  }, [id]);
 
   const onSubmit = (values) => {
-    console.log(values);
+    let username = AuthenticationServices.getLoggedInUsername();
+
+    let todo = {
+      id: id,
+      description: values.description,
+      targetDate: values.targetDate,
+    };
+
+    if (id === '-1') {
+      TodoDataService.createTodo(username, todo).then(() => {
+        props.history.push("/todos");
+      });
+    } else {
+      TodoDataService.updateTodo(username, id, todo).then(() => {
+        props.history.push("/todos");
+      });
+    }
   };
 
   const validate = (values) => {
-    let errors = { description: "Should have 5 chars" };
+    let errors = {};
     if (!values.description) {
       errors.description = "Enter Description.";
     } else if (values.description.length < 5) {

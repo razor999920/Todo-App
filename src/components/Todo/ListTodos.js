@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useState, useEffect } from "react";
 import TodoDataService from "../../API/Todo/TodoDataService";
 import AuthenticationServices from "../Auth/AuthenticationServices";
@@ -12,7 +13,7 @@ const ListTodos = (props) => {
       setTodos(response.data);
     });
     // WRONG: Beacause it cleans up everytime
-    // return () => {  
+    // return () => {
     //   setTodos(null);
     // };
   }, [deleteMessage]);
@@ -25,8 +26,11 @@ const ListTodos = (props) => {
   };
 
   const updateTodoHandler = (id) => {
-    console.log(id)
     props.history.push(`/todos/${id}`);
+  };
+
+  const addTodoHandler = () => {
+    props.history.push(`/todos/-1`);
   };
 
   return (
@@ -52,9 +56,9 @@ const ListTodos = (props) => {
                 <tr key={todo.id}>
                   <td>{todo.description}</td>
                   <td>{todo.done.toString()}</td>
-                  <td>{todo.targetDate.toString()}</td>
+                  <td>{moment(todo.targetDate).format("YYYY-MM-DD")}</td>
                   <td>
-                  <button
+                    <button
                       className="btn btn-success"
                       onClick={() => updateTodoHandler(todo.id)}
                     >
@@ -72,6 +76,9 @@ const ListTodos = (props) => {
             })}
           </tbody>
         </table>
+        <div className="row">
+          <button className="btn btn-success" onClick={addTodoHandler}>Add</button>
+        </div>
       </div>
     </>
   );
