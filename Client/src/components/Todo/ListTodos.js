@@ -65,6 +65,8 @@ const ListTodos = (props) => {
                     >
                       Update
                     </button>
+                  </td>
+                  <td>
                     <button
                       className="btn btn-warning"
                       onClick={() => deleteTodoHandler(todo.id)}
