@@ -24,9 +24,19 @@ const Login = (props) => {
     //   setInValidLogin(true);
     // }
 
-    AuthenticationService.executeBasicsAuthenticatedService(username, password)
-      .then(() => {
-        AuthenticationService.registerSuccessfulLogin(username, password);
+    // AuthenticationService.executeBasicsAuthenticatedService(username, password)
+    //   .then(() => {
+    //     AuthenticationService.registerSuccessfulLogin(username, password);
+    //     props.history.push(`/home/${username}`);
+    //   })
+    //   .catch(() => {
+    //     setValidLogin(false);
+    //     setInValidLogin(true);
+    //   });
+
+      AuthenticationService.executeJwtAuthenticatedService(username, password)
+      .then((response) => {
+        AuthenticationService.registerSuccessfulLoginForJwt(username, response.data.token);
         props.history.push(`/home/${username}`);
       })
       .catch(() => {
