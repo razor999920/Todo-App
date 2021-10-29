@@ -16,19 +16,31 @@ const Login = (props) => {
   };
 
   const loginHandler = () => {
-    if (username === "razor" && password === "dummy") {
-      AuthenticationService.registerSuccessfulLogin(username, password)
-      props.history.push(`/home/${username}`);
-    } else {
-      setValidLogin(false);
-      setInValidLogin(true);
-    }
+    // if (username === "razor" && password === "dummy") {
+    //   AuthenticationService.registerSuccessfulLogin(username, password);
+    //   props.history.push(`/home/${username}`);
+    // } else {
+    //   setValidLogin(false);
+    //   setInValidLogin(true);
+    // }
+
+    AuthenticationService.executeBasicsAuthenticatedService(username, password)
+      .then(() => {
+        AuthenticationService.registerSuccessfulLogin(username, password);
+        props.history.push(`/home/${username}`);
+      })
+      .catch(() => {
+        setValidLogin(false);
+        setInValidLogin(true);
+      });
   };
 
   return (
     <React.Fragment>
       <h1 className="container">Login</h1>
-      {inValidLogin && <div className="alert alert-warning">Invalid Login Credentials</div>}
+      {inValidLogin && (
+        <div className="alert alert-warning">Invalid Login Credentials</div>
+      )}
       {validLogin && <div>Login Sucessfull</div>}
       <label>User Name: </label>
       <input
@@ -44,7 +56,9 @@ const Login = (props) => {
         value={password}
         onChange={passwordHandler}
       />
-      <button className='btn btn-success' onClick={loginHandler}>Login</button>
+      <button className="btn btn-success" onClick={loginHandler}>
+        Login
+      </button>
     </React.Fragment>
   );
 };
