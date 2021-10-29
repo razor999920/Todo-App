@@ -9,6 +9,7 @@ const ListTodos = (props) => {
 
   useEffect(() => {
     let username = AuthenticationServices.getLoggedInUsername();
+    console.log(username);
     TodoDataService.retrieveAllTodos(username).then((response) => {
       setTodos(response.data);
     });
@@ -77,7 +78,9 @@ const ListTodos = (props) => {
           </tbody>
         </table>
         <div className="row">
-          <button className="btn btn-success" onClick={addTodoHandler}>Add</button>
+          <button className="btn btn-success" onClick={addTodoHandler}>
+            Add
+          </button>
         </div>
       </div>
     </>
