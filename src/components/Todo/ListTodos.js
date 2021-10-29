@@ -37,7 +37,7 @@ const ListTodos = (props) => {
     <>
       <h1>List Todos</h1>
       {deleteMessage && (
-        <div className="alert alert-suucess">{deleteMessage}</div>
+        <div className="alert alert-success">{deleteMessage}</div>
       )}
       <div className="container">
         <table className="table">
